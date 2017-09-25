@@ -1,0 +1,140 @@
+ubuntu下安装nodejs
+1. 下载node-v7.6.0-linux-x64.tar.xz后提取
+2. 移动到opt下:sudo mv node-v7.6.0-linux-x64 /opt/
+3. 安装 npm 和 node 命令到系统命令 
+sudo ln -s /opt/node-v4.4.4-linux-x64/bin/node /usr/local/bin/node 
+sudo ln -s /opt/node-v4.4.4-linux-x64/bin/npm /usr/local/bin/npm
+
+验证: node -v
+输出：v7.6.0
+
+验证: npm -v
+输出：4.1.2
+
+进入node交互模式: node
+> 100+200
+300
+
+退出node, 按ctrl+c两次
+
+node应用
+~/work/nodejs下新建hello.js:
+'use strict'
+console.log('hello world'); --打印输出，如果是在node交互模式中，运行一句则打印结果，如上面的100+200
+
+该目录下运行：node hello.js
+输出：hello world
+
+开启严格模式：
+node --use_strict hello.js (与hello.js的收行作用一样 'use strict')
+
+安装visual studio code
+下载deb文件后提取，进入code目录下直接运行code
+
+打开文件夹/work/nodejs，则该文件夹作为vsc的工程目录
+点击hello.js 点击左边菜单中的调试，运行，提示配置launch.json，配置成如下：
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run hello.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/hello.js",
+            "stopOnEntry": false,
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": null,
+            "runtimeExecutable": null,
+            "runtimeArgs": [
+                "--nolazy"
+            ],
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "externalConsole": false,
+            "sourceMaps": false,
+            "outDir": null
+        }
+    ]
+}
+
+可看到nodejs工程目录下出现.vscode - launch.json
+有了配置文件，即可使用VS Code调试JavaScript
+
+模块和调用
+hello.js就是一个模块，模块名为hello,　改写hello.js(/vsc_project/hello.js):
+'use strict'
+var s = 'hello';
+
+function greet(name){
+    console.log(s + ',' + name + '!');
+}
+
+module.exports = greet;//暴露函数，也可以是对象，变量，数组等
+
+main.js(/vsc_project/main.js)中调用模块暴露的函数：
+var greet = require('./hello.js');//如果只写hello，Node会依次在内置模块、全局模块和当前模块下查找hello.js
+var s = 'nick';
+greet(s);
+
+注意main.js放在工程目录/vsc_project目录时launch.json需要修改　--这里launch.json只有一个，所有调试不同的js文件时就要做修改，是否有其他用法？
+
+CommonJS规范
+javascript中不同模块可能定义了相同的全局变量，造成使用和修改的冲突．
+nodejs避免这种情况，原理：利用了闭包，把一段JavaScript代码用一个函数包装起来，这段代码的所有“全局”变量就变成了函数内部的局部变量。
+
+原理理解：待深入
+
+基本模块：nodejs内置的常用模块
+1. global 全局对象，类似js的window
+
+node交互环境中：
+> global.console
+Console {
+  log: [Function: bound log],
+  info: [Function: bound log],
+  warn: [Function: bound warn],
+  error: [Function: bound warn],
+  dir: [Function: bound dir],
+  time: [Function: bound time],
+  timeEnd: [Function: bound timeEnd],
+  trace: [Function: bound trace],
+  assert: [Function: bound assert],
+  Console: [Function: Console] }
+
+2. process
+代表当前Node.js进程
+> global.process 也可查看详细信息
+
+> process === global.process
+true
+> process.version
+'v7.6.0'
+> process.platform
+'linux'
+> process.arch
+'x64'
+> process.cwd()
+'/home/nick/work/signapk'　//查看当前工作目录
+
+test.js
+// process.nextTick()将在下一轮事件循环中调用:
+process.nextTick(function () {
+    console.log('nextTick callback!');　--后打印
+});
+console.log('nextTick was set!'); --这里先打印
+
+判断javascript环境(是在浏览器中执行还是在Node.js中执行)
+detectEnv.js:
+'use strict'
+
+if(typeof(window) === 'undefined'){
+    console.log("Node.js environment");
+}else{
+    console.log("Browser environment");
+}
+
+内置的fs模块
+
+
