@@ -1,0 +1,2 @@
+fs reading file.
+这是fs读取测试文件．

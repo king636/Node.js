@@ -1,0 +1,4 @@
+
+继续写入.
+fs reading file.
+这是fs读取测试文件．
