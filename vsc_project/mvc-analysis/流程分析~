@@ -1,0 +1,90 @@
+对app.js执行流程进行分析：
+服务器运行起来，刚开始没有在浏览器端有任何请求，代码顺序执行，遇到async函数时将这些async函数处理成middleware链(根据await next())，相当于后台的服务在等待请求的发起，非async函数的部分则先顺序得到执行，这也就是对url的异步处理．
+	处理非async部分时，完成了templating对nunjucks的初始化，以及controller中对controllers目录扫描，实现router注册Get　Post请求等（每个请求对应的也是async函数，也是middleware）
+	按顺序对middleware链分析：
+1. 收到请求时先记录时间，然后处理下一个middleware直到middleware链执行完毕，代表该请求处理完成，计算时间差返回到response中．
+app.use(async(ctx,next)=>{
+    logger.info(`Process${ctx.request.method}${ctx.request.url}`);
+    let
+        startTime = Date.now(),
+        execTime;
+    try{
+        await next();
+    }catch(e){
+        logger.error('error process request.',e);
+    }
+    logger.info(`Response: ${ctx.response.status}`);
+    execTime = Date.now() - startTime;
+    ctx.response.set('X-Response-Time', `${execTime}ms`);
+    ctx.response.set('X-Host', HOSTNAME);
+});
+
+2.static中是处理Bootstrap的静态文件，如果该请求不包含静态文件则跳到下一个middleware.
+如果包含静态文件的url，则直接response处理完，就不再跳到下一个middleware了(回到第１个middleware执行response内容)
+staticFiles中的：
+return async (ctx, next) => {
+        logger.info('goto async static files');
+        let rpath = ctx.request.path;
+        console.log(`static request path: ${rpath}`);
+        if (rpath.startsWith(url)) {
+            let fp = path.join(dir, rpath.substring(url.length));
+            console.log(`deal static file: ${fp}`);
+            if (await fs.exists(fp)) {
+                ctx.response.type = mime.lookup(rpath);//如何实现？
+                ctx.response.body = await fs.readFile(fp);
+            } else {
+                ctx.response.status = 404;
+            }
+        } else {
+            await next();
+        }
+    };
+	
+3.这里给ctx添加了render函数，函数还未执行，只是实现添加，然后跳到下一个middleware
+templating中的：
+return async(ctx,next)=>{
+        ctx.render = function(view,model){
+            //Object.assign({}, ctx.state || {}, model || {})使用是为了扩展model.
+            //三个参数，将第二个与第三个参数的所有属性放到第一个参数中，可以将ctx.state这个公共变量传给每一个view来处理
+            ctx.response.body = env.render(view, Object.assign({}, ctx.state || {}, model || {}));
+            ctx.response.type = 'text/html';
+        }
+        await next();
+    };
+
+4.这里就使用到了第3个中添加的render方法，渲染view,即html页面．
+router注册的Get或者Post的url对应的async函数被执行
+index.js中：
+ 'GET /':async(ctx,next)=>{
+        ctx.render('index.html',{
+            title:'Welcome'
+        })
+    }
+
+signin.js中：
+'POST /signin':async(ctx,next)=>{
+        var
+            email = ctx.request.body.email || '',
+            password = ctx.request.body.password || '';
+
+        console.log(`login email:${email},password:${password}`);
+        if(email === 'admin@example.com' && password === '123456'){
+            console.log('sign in ok');
+            ctx.render('signin-ok.html',{
+                title:'Sign in OK'
+            });
+        }else{
+            console.log('sign in failed');
+            ctx.render('signin-failed.html',{
+                title:'Sign in failed'
+            })
+        }
+    }
+
+5.html文件有对静态文件的加载，所以将所要的文件返回，当前的请求结束(回到第１个middleware执行response内容)，下面又开始新的请求流程：
+这是一个新的Get请求，这个请求又从middleware链开始执行，在staticFiles中有被处理，因为请求的是static目录下的静态文件
+<link rel="stylesheet" href="/static/css/bootstrap.css">
+这也是一个新的Get请求，类似的流程
+<script src="/static/js/bootstrap.js"></script>
+
+从以上分析中可知，controller中遍历请求的js文件只会在服务器初始化时执行一次，所以可以同步去读取文件，没有性能问题．

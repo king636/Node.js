@@ -1,0 +1,12 @@
+{
+    "name": "hello-koa2",
+    "version":"1.0.0",
+    "description": "Hello Koa 2 example with async",
+    "author": "nick",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "koa": "2.0.0",
+        "sequelize":"3.24.1",
+        "mysql":"2.11.1"
+    }
+}

@@ -1,0 +1,78 @@
+Wed Oct 18 2017 18:56:15 GMT+0800 (CST) - info: init app, isProduction:false,host name:HYSYB-CHENBIN
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: init app, isProduction:false,host name:HYSYB-CHENBIN,current dir:/home/nick/work/nodejs/vsc_project/my-study-project
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: start static file deal
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: before async static files
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: before templating create env
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: goto templating create env
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: goto add controllers
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 19:07:23 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 19:13:36 GMT+0800 (CST) - info: ProcessGET/
+Wed Oct 18 2017 19:13:36 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 19:13:36 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: init app, isProduction:false,host name:HYSYB-CHENBIN,current dir:/home/nick/work/nodejs/vsc_project/my-study-project
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: start static file deal
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: before async static files
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: before templating create env
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: goto templating create env
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: goto add controllers
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 19:18:00 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 19:18:05 GMT+0800 (CST) - info: ProcessGET/
+Wed Oct 18 2017 19:18:05 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 19:18:05 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: init app, isProduction:false,host name:HYSYB-CHENBIN,current dir:/home/nick/work/nodejs/vsc_project/my-study-project
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: start static file deal
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: before async static files
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: before templating create env
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: goto templating create env
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: goto add controllers
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 19:18:26 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: ProcessGET/
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: ProcessGET/static/css/bootstrap.css
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: ProcessGET/static/js/bootstrap.js
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: ProcessGET/static/fonts/glyphicons-halflings-regular.woff2
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 19:18:29 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: init app, isProduction:false,host name:HYSYB-CHENBIN
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: start static file deal
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: before async static files
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: before templating create env
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: goto templating create env
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: goto add controllers
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 21:29:02 GMT+0800 (CST) - info: goto addMapping
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: ProcessGET/
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: ProcessGET/static/css/bootstrap.css
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: ProcessGET/static/js/bootstrap.js
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: ProcessGET/static/fonts/glyphicons-halflings-regular.woff2
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:09 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: ProcessGET/favicon.ico
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: Response: 404
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: ProcessPOST/signin
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: ProcessGET/static/js/bootstrap.js
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: ProcessGET/static/css/bootstrap.css
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: Response: 200
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: ProcessGET/static/fonts/glyphicons-halflings-regular.woff2
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: goto async static files
+Wed Oct 18 2017 21:29:12 GMT+0800 (CST) - info: Response: 200

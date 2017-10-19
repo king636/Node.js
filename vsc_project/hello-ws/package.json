@@ -1,0 +1,10 @@
+{
+    "name": "hello-koa2",
+    "version":"1.0.0",
+    "description": "Hello Koa 2 example with async",
+    "author": "nick",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "ws":"3.0.0"
+    }
+}

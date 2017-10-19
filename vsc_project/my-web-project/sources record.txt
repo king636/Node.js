@@ -1,0 +1,167 @@
+在当前目录中打开终端方法：
+1. sudo apt-get install nautilus-open-terminal
+2. nautilus -q 会重新加载文件管理器
+打开目录，右键，出现选项＂在终端中打开＂，ok.
+
+使用tree来显示当前目录的树形结构：
+1. sudo apt-get install tree
+2. tree 展开所有
+
+根据目录级别展开：tree -L N
+
+开始分析廖神网站源码，结构目录：
+.
+├── api_console.js
+├── api.js
+├── api_schema.js
+├── app.js
+├── auth.js
+├── author
+├── author.js
+├── cache.js
+├── config_default.js
+├── config.js
+├── constants.js
+├── controllers
+├── db.js
+├── dbtypes.js
+├── favicon.ico
+├── gulpfile.js
+├── helper.js
+├── i18n.js
+├── image.js
+├── less.sh
+├── logger.js
+├── mail.js
+├── md.js
+├── middlewares
+├── models
+├── package.json
+├── page.js
+├── plugins
+├── robots.txt
+├── script
+├── search
+├── start.js
+├── start.sh
+├── static
+├── test
+└── views
+
+以下具体展开说明：
+.
+├── api_console.js
+├── api.js　//主程序(注意：非启动程序)．
+		定义常量：
+   const
+    isProduction = (process.env.NODE_ENV === 'production'),//是否生产环境
+    HOSTNAME = require('os').hostname(),//服务器系统的主机名
+    _ = require('lodash'),//工具库，具体再分析
+    fs = require('mz/fs'),//fs的封装,完成使用Promise并配合async实现异步
+    Koa = require('koa'),//对Node.js的http进行了封装,基于ES7,完成使用Promise并配合async实现异步
+    Cookies = require('cookies'),//nodejs内置模块，操作cookies
+    bodyParser = require('koa-bodyparser'),//对请求的body进行解析
+    templating = require('./middlewares/templating'),//使用nunjucks，并让ctx添加render函数，根据model渲染view
+    controller = require('./middlewares/controller'),//对各url的遍历和处理，与templating一起完成MVC模式
+    authenticate = require('./middlewares/authenticate'),//从cookies或者请求header中验证用户
+    restify = require('./middlewares/restify'),//支持Rest的API
+    logger = require('./logger.js'),//日志打印实例
+    api = require('./api'),//定义api错误类型
+    auth = require('./auth'),//使用sha1对用户密码加密
+    config = require('./config'),//环境的配置文件相关
+    db = require('./db'),//初始化数据库
+    constants = require('./constants'),//获取常量
+    i18n = require('./i18n'),//国际化语言支持
+    i18nTranslators = i18n.loadI18NTranslators('./views/i18n'),//从./views/i18n目录下加载语言，中文和英文的对应．
+    static_prefix = config.cdn.static_prefix,//cdn url的前缀，这里定位到config_default.js中，该前缀为''
+    ACTIVE_THEME = config.theme;//这里定位到config_default.js中,theme的值为'default'
+
+　　　　	// global app，使用app开始异步处理url请求，开发环境加载静态资源，验证用户，支持REST,使用MVC等．
+	app.js中主要流程的执行分析见mvc-analysis工程下的文档：流程分析．分析了middleware链的执行流程．
+	
+			
+├── api_schema.js
+├── app.js
+├── auth.js
+├── author
+├── author.js
+├── cache.js
+├── config_default.js
+├── config.js
+├── constants.js
+├── controllers
+├── db.js
+├── dbtypes.js
+├── favicon.ico
+├── gulpfile.js
+├── helper.js
+├── i18n.js
+├── image.js
+├── less.sh
+├── logger.js //引入winston模块，创建实例logger,log信息的打印: 
+		logger.info:console打印info级别信息,并打印到/tmp目录下的文件itranswarp-info.log中,
+				最大100M(应该是单个文件大小),最多20个文件
+		logger.error:打印err级别信息到/tmp目录下的文件itranswarp-error.log中,最大100M,最多50个文件
+├── mail.js
+├── md.js
+├── middlewares
+├── models
+├── package.json　//node的配置文件，launch的是start.js,并加载项目要使用的模块，包括开发环境专用
+		模块"dependencies"：
+　　　　"bluebird": "^3.4.6",
+    "gm": "1.23.0",
+    "htmlparser2": "3.9.1",
+    "jjv": "1.0.2",
+    "koa": "2.2.0",
+    "koa-bodyparser": "4.1.0",
+    "koa-router": "7.0.1",
+    "lodash": "4.17.4", //javaScript工具库，实现比如：
+			_.assign({ 'a': 1 }, { 'b': 2 }, { 'c': 3 });
+			// → { 'a': 1, 'b': 2, 'c': 3 }
+			_.map([1, 2, 3], function(n) { return n * 3; });
+			// → [3, 6, 9]
+    "marked": "0.3.6",
+    "memcached": "2.2.2",
+    "mime": "1.3.6",
+    "moment": "2.18.1",
+    "mysql": "2.13.0",
+    "mz": "2.6.0",
+    "nodemailer": "4.0.1",
+    "nunjucks": "3.0.1",
+    "oauth2-warp": "0.1.5",
+    "redis": "2.7.1",
+    "request": "2.75.0",
+    "sequelize": "3.30.2",
+    "thunkify": "2.1.2",
+    "uuid": "3.1.0",
+    "winston": "2.3.1"　//日志使用，本项目中使用winston创建的实例logger
+		开发另外的模块"devDependencies"：
+　　　　"co": "4.5.1",
+    "should": "11.2.*",
+    "supertest": "3.0.0",
+    "sleep-promise": "2.0.0",
+    "less": "2.7.2",
+    "mocha": "3.1.0",
+    "chai": "3.5.0",
+    "gulp-less": "3.3.2",
+    "gulp-jslint": "1.0.10",
+    "gulp-uglify": "3.0.0",
+    "gulp-concat": "2.6.1",
+    "gulp-minify-css": "1.2.4",
+    "gulp": "3.9.1"
+├── page.js
+├── plugins
+├── robots.txt
+├── script
+├── search
+├── start.js　//端口常量2017,引入app和logger模块，app监听2017端口，logger输出有用信息：版本，所处环境(正式或开发),端口
+├── start.sh
+├── static
+├── test
+└── views
+
+
+
+
+
+
