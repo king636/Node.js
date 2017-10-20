@@ -90,3 +90,22 @@ signin.js中：
 <script src="/static/js/bootstrap.js"></script>
 
 从以上分析中可知，controller中遍历请求的js文件只会在服务器初始化时执行一次，所以可以同步去读取文件，没有性能问题．
+
+middle捕获异常的用法：
+只需要在第一个middleware使用try catch就可以捕获middleware链中发生的异常．
+//调用异步函数处理请求
+app.use(async(ctx,next)=>{
+    logger.info(`Process${ctx.request.method}${ctx.request.url}`);
+    let
+        startTime = Date.now(),
+        execTime;
+    try{
+        await next();
+    }catch(e){　//第一个middleware中捕获异常，后面的middle就不需要再捕获了
+        logger.error('error process request.',e);
+    }
+    logger.info(`Response: ${ctx.response.status}`);
+    execTime = Date.now() - startTime;
+    ctx.response.set('X-Response-Time', `${execTime}ms`);
+    ctx.response.set('X-Host', HOSTNAME);
+});

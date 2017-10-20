@@ -112,7 +112,7 @@ async function findUserAuthByProvider(provider, id) {
 // parseSessionCookie:
 // provider:uid:expires:sha1(provider:uid:expires:passwd:salt)
 async function parseSessionCookie(s) {
-    let decoded = _safe_b64decode(s);
+    let decoded = _safe_b64decode(s);//解码cookie
     logger.info('decode cookie to: ' + decoded);
     let ss = decoded.split(':');
     if (ss.length !== 4) {

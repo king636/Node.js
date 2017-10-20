@@ -43,10 +43,10 @@ module.exports = function (pathPrefix = '/api/') {
             response = ctx.response;
         if (request.path.startsWith(pathPrefix)) {
             logger.info(`process API ${request.method} ${request.url}...`);
-            ctx.validate = (schemaName) => {//验证body内容
+            ctx.validate = (schemaName) => {//验证body内容的函数赋值给ctx.validate
                 api_schema.validate(schemaName, request.body);
             };
-            ctx.rest = (data) => {
+            ctx.rest = (data) => {//同上，创建ctx.rest函数
                 response.type = 'application/json';
                 response.body = data;
             };

@@ -44,6 +44,17 @@ if(!isProduction){
 
 app.use(bodyParser());
 
+//下面是两个连续的middleware，用来测试异常的捕获，在console.log(aaa)时发生变量aaa未定义的异常，也能被第一个middleware
+//中的try catch捕获．说明只需要在第一个middleware使用try catch就可以捕获middleware链中发生的异常．
+// app.use(async(ctx,next)=>{
+//     console.log('test');
+//     await next();
+// });
+
+// app.use(async(ctx,next)=>{
+//     console.log(aaa);//模拟异常发生
+// });
+
 app.use(templating('views',{
     noCache:!isProduction,//正式环境需要缓存，开发环境不需要
     watch:!isProduction
@@ -55,3 +66,8 @@ app.use(controller());
 //端口3000监听
 app.listen(3000);
 console.log('app started at port 3000...');
+
+var test = (abc)=>{
+    return 4;
+}
+console.log(test);

@@ -127,7 +127,7 @@ module.exports = async (ctx, next) => {
         };
     }
 
-    //expectedRole默认为0?ctx.state.__user__.role这里应该也是0.这里应该是待扩展使用．
+    //创建ctx.checkPermission函数，检查权限用
     ctx.checkPermission = (expectedRole) => {
         if (ctx.state.__user__ === null || (ctx.state.__user__.role > expectedRole)) {
             logger.warn('check permission failed: expected = ' + expectedRole + ', actual = ' + (ctx.state.__user__ ? ctx.state.__user__.role : 'null'));

@@ -102,7 +102,7 @@ app.use(templating('views', {
 app.use(authenticate);
 
 // rest support:
-// 如果是REST API，
+// 如果是REST API，则对ctx做相应的处理，后面什么时候用到？
 app.use(restify());
 
 // add global state for MVC:
