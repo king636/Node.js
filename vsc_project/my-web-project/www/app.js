@@ -9,20 +9,20 @@
 const
     isProduction = (process.env.NODE_ENV === 'production'),
     HOSTNAME = require('os').hostname(),
-    _ = require('lodash'),
-    fs = require('mz/fs'),
+    // _ = require('lodash'),//未用到，注释掉
+    // fs = require('mz/fs'),//未用到，注释掉
     Koa = require('koa'),
-    Cookies = require('cookies'),
+    // Cookies = require('cookies'),//未用到，注释掉
     bodyParser = require('koa-bodyparser'),
     templating = require('./middlewares/templating'),
     controller = require('./middlewares/controller'),
     authenticate = require('./middlewares/authenticate'),
     restify = require('./middlewares/restify'),
     logger = require('./logger.js'),
-    api = require('./api'),
-    auth = require('./auth'),
+    // api = require('./api'),//未用到，注释掉
+    // auth = require('./auth'),//未用到，注释掉
     config = require('./config'),
-    db = require('./db'),
+    // db = require('./db'),//未用到，注释掉
     constants = require('./constants'),
     i18n = require('./i18n'),
     i18nTranslators = i18n.loadI18NTranslators('./views/i18n'),

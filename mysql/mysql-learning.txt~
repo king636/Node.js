@@ -1,0 +1,39 @@
+常用命令(ubuntu)：
+
+进入数据库：mysql -u root -p;( --host 指定连接的主机，未指定则为localhost)
+退出数据库：exit;
+停止：sudo service mysql stop;
+重启：sudo service mysql restart;
+
+查询字符编码：
+show variables like '%char%';
+查询数据库：show databases;
+创建数据库：create database test;(test为数据库名称)
+切换数据库：use test;
+查询表：show tables;
+创建用户名和口令并分配权限：
+grant all privileges on test.* to 'www'@'%' identified by 'www';
+flush privileges;//flush后权限才能生效
+
+创建表pets:
+create table pets (
+    id varchar(50) not null,
+    name varchar(100) not null,
+    gender bool not null,
+    birth varchar(10) not null,
+    createdAt bigint not null,
+    updatedAt bigint not null,
+    version bigint not null,
+    primary key (id)
+) engine=innodb;
+
+删除表：drop table pets;
+
+查询表记录：select * from pets;
+插入记录：
+删除记录：
+delete from pets where name='Odie';//删除一条
+delete from pets;//删除所有记录
+
+更新记录：
+

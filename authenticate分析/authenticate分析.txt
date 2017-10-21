@@ -5,7 +5,22 @@
 如果存在cookie,则从cookie中解析出user,判断user是否被锁(比如注册未激活？).如果不存在cookie则不处理，user就是空.
 如果从cookie解析user失败，或者user被加锁，都让user为空．说明该cookie失效，删除掉（就是设置过期时间为当前时间）
 --cookie中解析user的过程：
---
+--auth.parseSessionCookie(s) --s为cookie，对cookie解码（base64编码解码为string）
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+项目中对字符串使用base64编码和解码分析：
+编码时():先用base64编码，然后用'-'替换'+',用'_'替换'/',用'.'替换'='
+function _safe_b64encode(s) {
+    let b64 = Buffer.from(s).toString('base64');
+    return b64.replace(re_add, '-').replace(re_sla, '_').replace(re_equ, '.');
+}
+解码相反：先对字符串用'+'替换'-',用'/'替换'_',用'='替换'.'．
+然后用base64解码
+function _safe_b64decode(s) {
+    let b64 = s.replace(re_r_add, '+').replace(re_r_sla, '/').replace(re_r_equ, '=');
+    return Buffer.from(b64, 'base64').toString();
+}
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+
 
 
 
@@ -32,7 +47,7 @@ ctx.checkPermission = (expectedRole) => {
         }
     };
 （根据user是否为空或者user的role来判断）
-根据上面解析user的过程，如果user为空那么ctx.state.__user__肯定为空，这个在跳出这个middleware之后就可以只通过ctx来判断了．
+根据上面解析user的过程，如果user为空那么ctx.state.__user__肯定为空，在跳出这个middleware之后就可以只通过ctx来判断了．
 默认设置的role值为：
 constants.role:
 role: {

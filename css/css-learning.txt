@@ -1,0 +1,66 @@
+<style>
+body
+{
+	background-color:#d0e4fe;
+}
+h1
+{
+	color:orange;
+	text-align:center;
+}
+p
+{
+	font-family:"Times New Roman";
+	font-size:20px;
+}
+</style>
+
+/*这是个注释*/
+p
+{
+text-align:center;
+/*这是另一个注释*/
+color:black;
+font-family:arial;
+}
+
+id:
+<style>
+#para1
+{
+	text-align:center;
+	color:red;
+} 
+</style>
+
+<p id="para1">Hello World!</p>
+
+class:
+<style>
+.center
+{
+	text-align:center;
+}
+</style>
+
+<h1 class="center">标题居中</h1>
+<p class="center">段落居中。</p> 
+
+插入样式表的方法有三种:
+外部样式表(External style sheet):<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+hr {color:sienna;}
+p {margin-left:20px;}
+body {background-image:url("/images/back40.gif");}
+
+内部样式表(Internal style sheet)
+<head>
+<style>
+hr {color:sienna;}
+p {margin-left:20px;}
+body {background-image:url("images/back40.gif");}
+</style>
+</head>
+
+内联样式(Inline style)
+<p style="color:sienna;margin-left:20px">这是一个段落。</p>
